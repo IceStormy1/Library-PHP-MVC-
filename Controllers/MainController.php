@@ -7,7 +7,14 @@ class MainController extends AbstractController
 {
     public function mainPage(): void
     {
-        $this->render('main-page');
+        $genresResult = mysqli_query($this->dbContext,'select `id`, `Genre` from `bookgenres`');
+        $authorResult = mysqli_query($this->dbContext,'select `id`, `FullName` from `authors`');
+
+        $params = [
+            'genresResult'=>$genresResult,
+            'authorResult'=>$authorResult
+        ];
+        $this->render('main-page', $params);
     }
 
     public function save():void

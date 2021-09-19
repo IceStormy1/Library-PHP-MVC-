@@ -1,5 +1,5 @@
 <html lang="en">
-<?global $connection;?>
+
 <head>
     <meta charset="UTF-8" />
     <title>Главная страница</title>
@@ -54,8 +54,7 @@
             <select name="idGenre">
                 <option value="0">Выберите жанр</option>
                 <?php
-                $res = mysqli_query($connection,'select `id`, `Genre` from `bookgenres`');
-                while($row = mysqli_fetch_assoc($res)){
+                while($row = mysqli_fetch_assoc($genresResult)){
                     ?>
                     <option value="<?=$row['id']?>"><?=$row['Genre']?></option>
                     <?php
@@ -67,8 +66,7 @@
             <select name="idAuthor">
                 <option value="0">Выберите Автора</option>
                 <?php
-                $res = mysqli_query($connection,'select `id`, `FullName` from `authors`');
-                while($row = mysqli_fetch_assoc($res)){
+                while($row = mysqli_fetch_assoc($authorResult)){
                     ?>
                     <option value="<?=$row['id']?>"><?=$row['FullName']?></option>
                     <?php
