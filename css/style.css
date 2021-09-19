@@ -1,0 +1,161 @@
+a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.body {
+    background-color: #fcfdfd;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    background: #689cd2;
+    color: #fff;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.header_section {
+    display: flex;
+    align-items: center;
+}
+
+.header_item {
+    padding: 10px 15px;
+    font-size: 20px;
+    margin-left: 40px;
+}
+
+.header_item:hover {
+    background-color: #4b7199;
+    border-radius: 4px;
+}
+
+.headerlogo {
+    font-weight: bold;
+}
+
+.headerButton {
+    cursor: pointer;
+}
+
+.sideBar {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 630px;
+    width: 150px;
+    margin-left: 190px;
+    border-left: 1px solid #d7dbdd;
+    border-bottom: 1px solid #d7dbdd;
+    padding: 10px;
+}
+
+.sideBar a {
+    color: #689cd2;
+}
+
+.sideBar_item {
+    display: flex;
+    cursor: pointer;
+    padding: 8px 10px;
+    font-size: 18px;
+}
+
+.sideBar_item:hover {
+    background-color: #eef3f5;
+    border-radius: 4px;
+}
+
+.mainContent {
+    display: flex;
+    color: black;
+    padding: 10px;
+}
+
+.mainContent_item {
+    float: left;
+    display: block;
+    font-size: 30px;
+    margin-left: 190px;
+    height: 500px;
+    width: 300px;
+}
+
+.mainContent_item_image {
+    width: 300px;
+    height: 300px;
+}
+
+main {
+    display: flex;
+}
+
+footer {
+    position: absolute;
+    left: 0;
+    top: 870px;
+    bottom: 0;
+    width: 100%;
+    height: 80px;
+    padding-top: 20px;
+    background: #689cd2;
+    color: #fff;
+    text-align: center;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.mainContent_item_contacts {
+    float: left;
+    display: block;
+    font-size: 30px;
+    margin-left: 190px;
+    height: 500px;
+    width: 1280px;
+}
+
+#otvet {
+    display: none;
+}
+
+.calc {
+    text-align: center;
+}
+
+pre {
+    margin: 20px auto;
+    padding: 25px;
+    width: 350px;
+    border: 1px solid black;
+    font-size: 18px;
+}
+
+input[type="number"] {
+    width: 40px;
+    text-align: right;
+}
+
+input[type="button"] {
+    background: #689cd2;
+    border: none;
+    padding: 10px 35px;
+    font-size: 20px;
+    border-radius: 6px;
+}
+
+input[type="button"]:hover {
+    opacity: 0.8;
+}
+
+form {
+    justify-content: space-between;
+    padding: 10px;
+    background: #1a8b1a;
+
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.second_header_section{
+    text-align: center;
+}
