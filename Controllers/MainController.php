@@ -1,31 +1,58 @@
 <?php
-namespace Controllers;
-use Controllers\AbstractController;
 
+namespace Controllers;
+
+use Controllers\AbstractController;
 
 class MainController extends AbstractController
 {
     public function mainPage(): void
     {
-        $genresResult = mysqli_query($this->dbContext,'select `id`, `Genre` from `bookgenres`');
-        $authorResult = mysqli_query($this->dbContext,'select `id`, `FullName` from `authors`');
+        $genresResult = $this->model->getAllGenres();
+        $authorResult = $this->model->getAllAuthors();
+        $booksResult = $this->model->getAllBooks();
 
         $params = [
-            'genresResult'=>$genresResult,
-            'authorResult'=>$authorResult
+            'genresResult' => $genresResult,
+            'authorResult' => $authorResult,
+            'booksResult' => $booksResult
         ];
+
         $this->render('main-page', $params);
     }
 
-    public function save():void
+    public function save(): void
+    {
+        if (isset($_POST)) {
+            $Title = $_POST['BookTitle'];
+            $Description = $_POST['Description'];
+            $Date = $_POST['YearOfWriting'];
+            $idGenre = $_POST['idGenre'];
+            $idAuthor = $_POST['idAuthor'];
+
+            $this->model->SaveEntry($Title, $Description, $Date, $idAuthor, $idGenre);
+
+            header("Location: http://librarynew/");
+
+        }
+    }
+
+    public function edit():void
     {
         if(isset($_POST))
         {
-            echo $_POST['idGenre']."<br>";
-            echo $_POST['idAuthor'];
+            echo $_POST['id'];
+            $genresResult = $this->model->getAllGenres();
+            $authorResult = $this->model->getAllAuthors();
+            $booksResult = $this->model->getAllBooks();
 
-header("Location: http://librarynew/");
+            $params = [
+                'genresResult' => $genresResult,
+                'authorResult' => $authorResult,
+                'booksResult' => $booksResult
+            ];
 
+            $this->render('edit-main-page', $params);
         }
     }
 }

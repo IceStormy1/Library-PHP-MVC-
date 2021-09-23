@@ -3,12 +3,16 @@
 return [
 
     '' => [
-        'controller' => 'MainController',
+        'controller' => 'Main',
         'action' => 'mainPage',
     ],
     'save' => [
-        'controller'=>'MainController',
+        'controller' => 'Main',
         'action' => 'save'
+    ],
+    'edit' => [
+        'controller' => 'Main',
+        'action' => 'edit'
     ]
 
 ];

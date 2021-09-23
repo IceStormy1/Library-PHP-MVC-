@@ -12,7 +12,8 @@ class  connect
 
         $connection = mysqli_connect($serverName, $username, $password, $database);
 
-        if (!$connection) {
+        if (!$connection)
+        {
             die("Connection failed." . mysqli_connect_error());
         }
 

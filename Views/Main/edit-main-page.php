@@ -76,7 +76,7 @@
         <input type="submit" value="Save">
     </div>
 </form>
-
+<a href=""><button>Сохранить</button></a>
 <div class="tableMain">
     <table border="1" width="70%">
         <col style="width:0%">
@@ -95,13 +95,12 @@
         foreach ($params['booksResult'] as $rowBook) {
             ?>
             <tr>
-                <td><?= $rowBook['id'] ?></td>
+                <td><input type="text" value="<?= $rowBook['id'] ?>"></td>
                 <td><?= $rowBook['BookTitle'] ?></td>
                 <td><?= $rowBook['Description'] ?></td>
                 <td><?= $rowBook['YearOfWriting'] ?></td>
                 <td><?= $rowBook['FullName'] ?></td>
                 <td><?= $rowBook['Genre'] ?></td>
-                <td><a href="/edit/<?= $rowBook['id'] ?>"><input type="submit" value="Edit"></td>
             </tr>
         <?php } ?>
     </table>
