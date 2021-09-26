@@ -35,9 +35,9 @@
         </div>
     </div>
 </div>
-
 <!-- End Header -->
-<form action="/save" method="POST" enctype="multipart/form-data">
+
+<form action="/save" method="POST" enctype="multipart/form-data" id="test">
     <div class="second_header_section">
         <label>
             <input maxlength="75" name="BookTitle" placeholder="Book Title"/>
@@ -77,7 +77,9 @@
     </div>
 </form>
 
-<div class="tableMain">
+
+<form action="/edit" class="test" method="post">
+    <div class="tableMain">
     <table border="1" width="70%">
         <col style="width:0%">
         <col style="width:10%">
@@ -101,11 +103,13 @@
                 <td><?= $rowBook['YearOfWriting'] ?></td>
                 <td><?= $rowBook['FullName'] ?></td>
                 <td><?= $rowBook['Genre'] ?></td>
-                <td><a href="/edit/<?= $rowBook['id'] ?>"><input type="submit" value="Edit"></td>
+                <td><button value="<?= $rowBook['id']  ?>" type="submit" name="id">Edit</button></td>
+                <td><button value="<?= $rowBook['id']  ?>" type="submit" name="id" formaction="/delete">Delete</button></td>
             </tr>
         <?php } ?>
     </table>
 </div>
+</form>
 
 <footer>
     <div class="footer">

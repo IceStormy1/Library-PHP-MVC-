@@ -148,7 +148,15 @@ input[type="button"]:hover {
     opacity: 0.8;
 }
 
-form {
+#test {
+    justify-content: space-between;
+    padding: 10px;
+    background: #1a8b1a;
+
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+#test_t {
     justify-content: space-between;
     padding: 10px;
     background: #1a8b1a;

@@ -13,6 +13,17 @@ return [
     'edit' => [
         'controller' => 'Main',
         'action' => 'edit'
+    ],
+    'edit=' => [
+        'controller' => 'Main',
+        'action' => 'edit'
+    ],
+    'editsave'=>[
+        'controller' => 'Main',
+        'action' => 'saveEdit'
+    ],
+    'delete'=>[
+        'controller' => 'Main',
+        'action' => 'delete'
     ]
-
 ];
