@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="/css/style.css"/>
     <meta http-equiv="Content-Type"/>
 </head>
+<body>
 <form>
 <!-- Header -->
 <div class="header">
@@ -15,9 +16,6 @@
         </div>
         <div class="header_item headerButton">
             <a href="/">Home</a>
-        </div>
-        <div class="header_item headerButton">
-            <a href="#">Books</a>
         </div>
         <div class="header_item headerButton">
             <a href="#">Genres</a>
@@ -81,7 +79,7 @@
 <div class="tableMain">
     <form action="/editsave" method="POST" enctype="multipart/form-data">
     <table border="1" width="70%">
-        <col style="width:0%">
+        <col style="width:0">
         <col style="width:10%">
         <col style="width:60%">
         <col style="width:10%">
@@ -176,6 +174,5 @@
         </div>
     </div>
 </footer>
-
 </body>
 </html>

@@ -14,10 +14,6 @@ return [
         'controller' => 'Main',
         'action' => 'edit'
     ],
-    'edit=' => [
-        'controller' => 'Main',
-        'action' => 'edit'
-    ],
     'editsave'=>[
         'controller' => 'Main',
         'action' => 'saveEdit'
@@ -25,5 +21,25 @@ return [
     'delete'=>[
         'controller' => 'Main',
         'action' => 'delete'
-    ]
+    ],
+    'genres' =>[
+        'controller'=> 'Genres',
+        'action'=>'genresMain'
+    ],
+    'genres/save'=>[
+        'controller'=>'Genres',
+        'action'=>'genresSave'
+    ],
+    'genres/edit' => [
+        'controller' => 'Genres',
+        'action' => 'genresEdit'
+    ],
+    'genres/editsave'=>[
+        'controller' => 'Genres',
+        'action' => 'genresSaveEdit'
+    ],
+    'genres/delete'=>[
+        'controller' => 'Genres',
+        'action' => 'genresDelete'
+    ],
 ];

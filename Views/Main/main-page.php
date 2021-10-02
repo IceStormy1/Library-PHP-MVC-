@@ -17,10 +17,7 @@
             <a href="/">Home</a>
         </div>
         <div class="header_item headerButton">
-            <a href="#">Books</a>
-        </div>
-        <div class="header_item headerButton">
-            <a href="#">Genres</a>
+            <a href="/genres">Genres</a>
         </div>
         <div class="header_item headerButton">
             <a href="#">Authors</a>

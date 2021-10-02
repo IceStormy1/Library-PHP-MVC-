@@ -33,7 +33,6 @@ class MainController extends AbstractController
             $this->model->SaveEntry($Title, $Description, $Date, $idAuthor, $idGenre);
 
             header("Location: http://librarynew/");
-
         }
     }
 

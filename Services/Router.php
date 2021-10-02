@@ -24,20 +24,18 @@ class Router
     public function match()
     {
         $url = trim($_SERVER['REQUEST_URI'], '/');
-        foreach ($this->routes as $route => $params)
-        {
-            if (preg_match($route, $url, $matches))
-            {
+        foreach ($this->routes as $route => $params) {
+            if (preg_match($route, $url, $matches)) {
                 $this->params = $params;
                 return true;
             }
         }
+
         return false;
     }
 
     public function run()
     {
-
         if ($this->match())
         {
             $path = '\\Controllers\\' . $this->params['controller'] . 'Controller';
@@ -49,18 +47,15 @@ class Router
                 {
                     $controller = new $path($this->params);
                     $controller->$action();
-                }
-                else
+                } else
                 {
                     echo "Метод не найден " . $action;
                 }
-            }
-            else
+            } else
             {
                 echo 'Класс не найден' . $path;
             }
-        }
-        else
+        } else
         {
             echo '404 Маршрут не найден';
         }

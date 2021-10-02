@@ -20,13 +20,13 @@ abstract class AbstractController
     protected function render(string $template, array $params = []): void
     {
         extract($params);
-
-        if (file_exists("Views/Main/" . $template . '.php')) {
+        $controller = $this->route['controller'];
+        if (file_exists("Views/$controller/" . $template . '.php')) {
             ob_start();
-            include "Views/Main/" . $template . '.php';
+            include "Views/$controller/" . $template . '.php';
             ob_flush();
         } else {
-            echo "Файл не найден";
+            echo "Файл $template не найден";
         }
     }
 

@@ -20,4 +20,3 @@ class  connect
         return $connection;
     }
 }
-//echo "Connected succesfully";

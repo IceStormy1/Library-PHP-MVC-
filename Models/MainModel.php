@@ -24,18 +24,18 @@ class MainModel extends Model
     public function SaveEntry(string $Title, string $Description, string $Date, int $idAuthor, int $idGenre)
     {
         $query = "INSERT INTO `books` (BookTitle, Description, idAuthor, idGenre, YearOfWriting) values ('$Title', '$Description', '$idAuthor','$idGenre', '$Date')";
-        $result = mysqli_query($this->dbContext, $query) or die("Error in query to database");
+        mysqli_query($this->dbContext, $query) or die("Error in query to database");
     }
 
     public function SaveEdit(int $id, int $idGenre, int $idAuthor, string $bookTitle, string $description, string $yearOfWriting)
     {
         $query = "UPDATE books SET `books`.`BookTitle` = '$bookTitle',`books`.`Description` = '$description', `books`.`YearOfWriting` = '$yearOfWriting', `books`.`idAuthor` = '$idAuthor', `books`.`idGenre` = '$idGenre'  WHERE `books`.`id` = '$id'";
-        $result = mysqli_query($this->dbContext, $query) or die("Error in query to database");
+        mysqli_query($this->dbContext, $query) or die("Error in query to database");
     }
 
     public function Delete(int $id)
     {
         $query = "DELETE FROM `books` WHERE `id` = $id ";
-        $result = mysqli_query($this->dbContext, $query) or die("Error in query to database");
+        mysqli_query($this->dbContext, $query) or die("Error in query to database");
     }
 }
