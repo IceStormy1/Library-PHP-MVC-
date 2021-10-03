@@ -62,8 +62,12 @@ return [
         'controller' => 'Authors',
         'action' => 'authorsDelete'
     ],
-    '/queries'=>[
+    'queries'=>[
         'controller'=>'Queries',
         'action'=>'queriesMain'
+    ],
+    'queries/filter'=>[
+        'controller'=>'Queries',
+        'action'=>'queriesFilter'
     ]
 ];
