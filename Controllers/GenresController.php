@@ -63,4 +63,10 @@ class GenresController extends AbstractController
             header("Location: http://librarynew/genres");
         }
     }
+
+    public function Delete($idGenre)
+    {
+        $query = "DELETE FROM `bookgenres` WHERE `id` = $idGenre";
+        mysqli_query($this->dbContext, $query) or die("Error in query to database");
+    }
 }

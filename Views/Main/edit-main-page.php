@@ -18,10 +18,13 @@
             <a href="/">Home</a>
         </div>
         <div class="header_item headerButton">
-            <a href="#">Genres</a>
+            <a href="/genres">Genres</a>
         </div>
         <div class="header_item headerButton">
-            <a href="#">Authors</a>
+            <a href="/authors">Authors</a>
+        </div>
+        <div class="header_item headerButton">
+            <a href="/queries">Queries</a>
         </div>
     </div>
     <div class="header_section">
