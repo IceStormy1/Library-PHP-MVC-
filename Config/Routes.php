@@ -69,5 +69,13 @@ return [
     'queries/filter'=>[
         'controller'=>'Queries',
         'action'=>'queriesFilter'
+    ],
+    'register'=>[
+        'controller'=>'Account',
+        'action'=>'registration'
+    ],
+    'login'=>[
+        'controller'=>'Account',
+        'action'=>'login'
     ]
 ];
