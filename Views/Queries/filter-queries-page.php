@@ -31,7 +31,7 @@
             <a href="#"> Settings </a>
         </div>
         <div class="header_item headerButton">
-            <a href="#"> Sign in </a>
+            <a href="/login"> Sign in </a>
         </div>
     </div>
 </div>
@@ -89,7 +89,7 @@
 <footer>
     <div class="footer">
         <div class="footer_section">
-            The work was completed &copy; Толмачев М.Е ВИС32
+            The work was completed &copy; Tolmachev М.Е VIS-32
         </div>
     </div>
 </footer>

@@ -5,6 +5,7 @@ a {
 
 .body {
     background-color: #fcfdfd;
+    font-family: Montserrat, sans-serif;
 }
 
 .header {
@@ -170,4 +171,54 @@ input[type="button"]:hover {
 
 table{
     text-align: center;
+}
+
+.accountInput{
+    margin: 10px 0;
+    padding: 10px;
+    border: unset;
+    border-bottom: 2px solid #e3e3e3;
+    outline: none;
+}
+
+.accountButton{
+    padding: 10px;
+    background: #e3e3e3;
+    border: unset;
+    cursor: pointer;
+}
+
+.accountForm{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    margin: 0 auto;
+    margin-top: 200px;
+    width: 400px;
+}
+
+#acc{
+    color: #689cd2;
+}
+
+.message{
+    border: 2px solid #689cd2;
+    border-radius: 3px;
+    padding: 10px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.success{
+    border: 2px solid #38bb13;
+    border-radius: 3px;
+    padding: 10px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.messageSuccess{
+    padding: 10px;
+    text-align: center;
+    font-weight: bold;
 }

@@ -70,7 +70,7 @@ return [
         'controller'=>'Queries',
         'action'=>'queriesFilter'
     ],
-    'register'=>[
+    'registration'=>[
         'controller'=>'Account',
         'action'=>'registration'
     ],
