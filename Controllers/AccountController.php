@@ -9,10 +9,11 @@ class AccountController extends AbstractController
     public function login(): void
     {
         if (!empty($_POST)) {
+            $isRemember = $_POST['IsRemember']??false;
             $username = $_POST['Username'];
             $password = md5($_POST['Password']);
 
-            $this->model->Authorize($username, $password);
+            $this->model->Authorize($username, $password, $isRemember);
 
             return;
         }
@@ -41,6 +42,7 @@ class AccountController extends AbstractController
     {
         if(array_key_exists("user", $_SESSION)) {
             unset($_SESSION['user']);
+            setcookie('user', "", time()-1);
             header("Location: http://librarynew/");
         }
     }
