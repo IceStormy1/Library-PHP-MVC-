@@ -48,7 +48,7 @@ if(array_key_exists("user", $_SESSION)){
     </label>
     <input class="accountInput" type="" name="Username" maxlength="64" placeholder="Enter your username for log in an account">
     <label>
-        Password (Min 6 simbols)
+        Password (Min 6 symbols)
     </label>
     <input class="accountInput" type="password" name="Password" maxlength="64" placeholder="Enter your password">
     <label>

@@ -71,9 +71,50 @@ class MainController extends AbstractController
         }
     }
 
+    public function comments():void
+    {
+        if(isset($_POST))
+        {
+            $idBook = $_POST['id'];
+            $bookComments = $this->model->GetAllCommentsByIdBook($idBook);
+
+            $params = [
+                'commentBooks'=> $bookComments,
+                'BookTitle'=>$this->model->GetBookById($idBook)->fetch_array()['BookTitle']??null,
+                'idBook'=>$idBook
+            ];
+
+            $this->render('book-comments', $params);
+        }
+    }
+
+    public function saveComment():void
+    {
+        if(isset($_POST))
+        {
+            $comment = $_POST['commentUser'];
+            $idUser = $_SESSION['user']['IdUser'];
+            $idBook = $_POST['idBook'];
+
+            $this->model->SaveComment($idUser, $idBook, $comment);
+
+            header("Location: http://librarynew/");
+        }
+    }
+
+    public function deleteComment():void
+    {
+        if(isset($_POST))
+        {
+            $this->model->DeleteComment($_POST['idComment']);
+            header("Location: http://librarynew/");
+        }
+    }
+
     public function delete(): void
     {
-        if (isset($_POST)) {
+        if (isset($_POST))
+        {
             $idBook = $_POST['id'];
 
             $this->model->Delete($idBook);

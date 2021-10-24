@@ -22,6 +22,18 @@ return [
         'controller' => 'Main',
         'action' => 'delete'
     ],
+    'comments'=>[
+        'controller'=>'Main',
+        'action'=>'comments'
+    ],
+    'saveComment'=>[
+      'controller'=>'Main',
+      'action'=>'saveComment'
+    ],
+    'deleteComment'=>[
+        'controller'=>'Main',
+        'action'=>'deleteComment'
+    ],
     'genres' =>[
         'controller'=> 'Genres',
         'action'=>'genresMain'
@@ -81,9 +93,5 @@ return [
     'logout'=>[
         'controller'=>'Account',
         'action'=>'logout'
-    ],
-    'comment'=>[
-        'controller'=>'Main',
-        'action'=>'comment'
     ]
 ];

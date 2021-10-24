@@ -38,4 +38,28 @@ class MainModel extends Model
         $query = "DELETE FROM `books` WHERE `id` = $id ";
         mysqli_query($this->dbContext, $query) or die("Error in query to database");
     }
+
+    public function GetAllCommentsByIdBook(int $idBook)
+    {
+        return $this->dbContext->query("SELECT `books`.`BookTitle`, `books`.`id`, `usercomments`.`Comment`, `users`.`UserName`, `users`.`IdUser`, `usercomments`.`idComment` FROM `books` INNER JOIN usercomments ON `usercomments`.`IdBook` = `books`.`id` INNER JOIN `users` ON `usercomments`.`IdUser` = `users`.`IdUser` WHERE `books`.`id` = $idBook");
+    }
+
+    public function GetBookById(int $idbook)
+    {
+        return $this->dbContext->query("SELECT `books`.BookTitle FROM `books` WHERE `books`.`id` = $idbook");
+    }
+
+    public function SaveComment(string $idUser, int $idBook, string $comment)
+    {
+        $idComment = $this->CreateGuid();
+        $query = "INSERT INTO `usercomments` (`idComment`,`IdUser`, `IdBook`, `Comment`) VALUES ('$idComment','$idUser', $idBook, '$comment');";
+
+        mysqli_query($this->dbContext, $query) or die("Error in query to database");
+    }
+
+    public function DeleteComment(string $idComment)
+    {
+        $query = "DELETE FROM `usercomments` WHERE `idComment` = '$idComment' ";
+        mysqli_query($this->dbContext, $query) or die("Error in query to database");
+    }
 }

@@ -16,9 +16,28 @@ class AccountModel extends Model
             return;
         }
 
-        if (!($password === $confirmPassword || strlen($password) < 6))
+        $query = $this->dbContext->query("SELECT * FROM `users` WHERE UserName = '$username' OR Email = '$email'");
+
+        if($query->num_rows >= 1)
         {
-            $_SESSION['PasswordDontMatch'] = 'Check your password';
+            $_SESSION['ExceptionCreateUser'] = 'Such a user already exists';
+            header("Location: http://librarynew/registration");
+            return false;
+        }
+        // Запомнить меня
+        $uppercase = preg_match('@[A-Z]@', $password);
+        $lowercase = preg_match('@[a-z]@', $password);
+        $number    = preg_match('@[0-9]@', $password);
+
+        if(!$uppercase || !$lowercase || !$number || strlen($password) < 6) {
+            $_SESSION['PasswordDontMatch'] = 'Password must contain at least 1 digit, 1 capital latin letter';
+            header("Location: http://librarynew/registration");
+            return;
+        }
+
+        if (!($password === $confirmPassword))
+        {
+            $_SESSION['PasswordDontMatch'] = 'Passwords mismatch';
             header("Location: http://librarynew/registration");
             return;
         }
@@ -32,11 +51,6 @@ class AccountModel extends Model
         {
             $_SESSION['SuccessRegistration'] = 'Congratulations! You have successfully registered. Now you can log in to your account';
             header("Location: http://librarynew/login");
-        }
-        else
-        {
-            $_SESSION['ExceptionCreateUser'] = 'Such a user already exists';
-            header("Location: http://librarynew/registration");
         }
     }
 
@@ -68,14 +82,5 @@ class AccountModel extends Model
         }
 
         return true;
-    }
-
-    private function CreateGuid()
-    {
-        if (function_exists('com_create_guid') === true) {
-            return trim(com_create_guid(), '{}');
-        }
-
-        return sprintf('%04X%04X-%04X-%04X-%04X-%04X%04X%04X', mt_rand(0, 65535), mt_rand(0, 65535), mt_rand(0, 65535), mt_rand(16384, 20479), mt_rand(32768, 49151), mt_rand(0, 65535), mt_rand(0, 65535), mt_rand(0, 65535));
     }
 }

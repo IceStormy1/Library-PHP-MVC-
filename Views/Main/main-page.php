@@ -117,10 +117,10 @@
                 <td><?= $rowBook['YearOfWriting'] ?></td>
                 <td><?= $rowBook['FullName'] ?></td>
                 <td><?= $rowBook['Genre'] ?></td>
+                <td><button value="<?= $rowBook['id']  ?>" type="submit" name="id" formaction="/comments">Comment</button></td>
                 <?php if(array_key_exists("user", $_SESSION) && $_SESSION['user']['IdRole'] == 1) { ?>
                 <td><button value="<?= $rowBook['id']  ?>" type="submit" name="id">Edit</button></td>
                 <td><button value="<?= $rowBook['id']  ?>" type="submit" name="id" formaction="/delete">Delete</button></td>
-                <td><button value="<?= $rowBook['id']  ?>" type="submit" name="id" formaction="/comment">Comment</button></td>
             </tr>
         <?php }
         } ?>
