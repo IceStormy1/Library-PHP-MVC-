@@ -26,8 +26,8 @@ class AccountController extends AbstractController
     {
         if (!empty($_POST)) {
             $username = $_POST['Username'];
-            $password = md5($_POST['Password']);
-            $confirmPassword = md5($_POST['ConfirmPassword']);
+            $password = $_POST['Password'];
+            $confirmPassword = $_POST['ConfirmPassword'];
             $email = $_POST['Email'];
             $this->model->CreateUser($username, $password, $confirmPassword, $email);
 
@@ -35,5 +35,13 @@ class AccountController extends AbstractController
         }
 
         $this->render('pageRegistration');
+    }
+
+    public function logout():void
+    {
+        if(array_key_exists("user", $_SESSION)) {
+            unset($_SESSION['user']);
+            header("Location: http://librarynew/");
+        }
     }
 }

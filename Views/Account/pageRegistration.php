@@ -8,6 +8,11 @@
 </head>
 <body>
 <!-- Header -->
+<?php
+if(array_key_exists("user", $_SESSION)){
+    header("Location: http://librarynew/");
+}
+?>
 <div class="header">
     <div class="header_section">
         <div class="header_item headerlogo">
@@ -31,7 +36,7 @@
             <a href="#"> Settings </a>
         </div>
         <div class="header_item headerButton">
-            <a href="#"> Sign in </a>
+            <a href="/login"> Sign in </a>
         </div>
     </div>
 </div>
@@ -47,7 +52,7 @@
     </label>
     <input class="accountInput" type="password" name="Password" maxlength="64" placeholder="Enter your password">
     <label>
-        Password
+        Confirm your password
     </label>
     <input class="accountInput" type="password" name="ConfirmPassword" maxlength="64" placeholder="Confirm your password">
     <label>
@@ -59,15 +64,20 @@
         Already have an account? <a href="/login" id="acc">Sign in</a>
     </p>
     <?php
-    if(array_key_exists("message", $_SESSION))
+    if(array_key_exists("PasswordDontMatch", $_SESSION))
     {
-        echo '<p class="message">' . $_SESSION['message'] . '</p>';
-        unset($_SESSION['message']);
+        echo '<p class="message">' . $_SESSION['PasswordDontMatch'] . '</p>';
+        unset($_SESSION['PasswordDontMatch']);
     }
     elseif (array_key_exists("ExceptionCreateUser", $_SESSION))
     {
         echo '<p class="message">' . $_SESSION['ExceptionCreateUser'] . '</p>';
         unset($_SESSION['ExceptionCreateUser']);
+    }
+    elseif(array_key_exists("EmptyFields", $_SESSION))
+    {
+        echo '<p class="message">' . $_SESSION['EmptyFields'] . '</p>';
+        unset($_SESSION['EmptyFields']);
     }
     ?>
 </form>

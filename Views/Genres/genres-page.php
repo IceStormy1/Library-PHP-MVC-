@@ -27,16 +27,26 @@
         </div>
     </div>
     <div class="header_section">
-        <div class="header_item headerButton">
-            <a href="#"> Settings </a>
-        </div>
-        <div class="header_item headerButton">
-            <a href="/login"> Sign in </a>
-        </div>
+        <?php
+        if(array_key_exists("user", $_SESSION)){ ?>
+            <div class="header_item headerButton">
+                <a href="#"><?=$_SESSION['user']['UserName'] ?> </a>
+            </div>
+            <div class="header_item headerButton">
+                <a href="/logout"> Logout </a>
+            </div>
+            <?php
+        }else{ ?>
+            <div class="header_item headerButton">
+                <a href="/login"> Sign in </a>
+            </div>
+            <?php
+        }
+        ?>
     </div>
 </div>
 <!-- End Header -->
-
+<?php if(array_key_exists("user", $_SESSION) && $_SESSION['user']['IdRole'] == 1){  ?>
 <form action="/genres/save" method="POST" enctype="multipart/form-data" id="test">
     <div class="second_header_section">
         <label>
@@ -45,7 +55,9 @@
         <input type="submit" value="Save">
     </div>
 </form>
-
+    <?php
+        }
+    ?>
 <form action="/genres/edit" class="test" method="post">
     <div class="tableMain">
         <table border="1" width="40%">
@@ -60,10 +72,12 @@
                 <tr>
                     <td><?= $rowGenres['id'] ?></td>
                     <td><?= $rowGenres['Genre'] ?></td>
+                    <?php if(array_key_exists("user", $_SESSION) && $_SESSION['user']['IdRole'] == 1) { ?>
                     <td><button value="<?= $rowGenres['id']  ?>" type="submit" name="id">Edit</button></td>
                     <td><button value="<?= $rowGenres['id']  ?>" type="submit" name="id" formaction="/genres/delete">Delete</button></td>
                 </tr>
-            <?php } ?>
+            <?php }
+            } ?>
         </table>
     </div>
 </form>

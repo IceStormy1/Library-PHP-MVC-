@@ -27,55 +27,69 @@
         </div>
     </div>
     <div class="header_section">
-        <div class="header_item headerButton">
-            <a href="#"> Settings </a>
-        </div>
-        <div class="header_item headerButton">
-            <a href="/login"> Sign in </a>
-        </div>
+        <?php
+        if(array_key_exists("user", $_SESSION)){ ?>
+            <div class="header_item headerButton">
+                <a href="#"><?=$_SESSION['user']['UserName'] ?> </a>
+            </div>
+            <div class="header_item headerButton">
+                <a href="/logout"> Logout </a>
+            </div>
+       <?php
+        }else{ ?>
+            <div class="header_item headerButton">
+                <a href="/login"> Sign in </a>
+            </div>
+      <?php
+        }
+        ?>
     </div>
 </div>
 <!-- End Header -->
+<?php
+    if(array_key_exists("user", $_SESSION) && $_SESSION['user']['IdRole'] == 1){  ?>
+        <form action="/save" method="POST" enctype="multipart/form-data" id="test">
+            <div class="second_header_section">
+                <label>
+                    <input maxlength="75" name="BookTitle" placeholder="Book Title"/>
+                </label>
+                <label>
+                    <input maxlength="255" name="Description" placeholder="Description"/>
+                </label>
+                <label>
+                    <input maxlength="10" name="YearOfWriting" placeholder="Year of Writing"/>
+                </label>
 
-<form action="/save" method="POST" enctype="multipart/form-data" id="test">
-    <div class="second_header_section">
-        <label>
-            <input maxlength="75" name="BookTitle" placeholder="Book Title"/>
-        </label>
-        <label>
-            <input maxlength="255" name="Description" placeholder="Description"/>
-        </label>
-        <label>
-            <input maxlength="10" name="YearOfWriting" placeholder="Year of Writing"/>
-        </label>
-
-        <label>
-            <select name="idGenre">
-                <option value="0">Select genre</option>
-                <?php
-                foreach ($params['genresResult'] as $row) {
-                    ?>
-                    <option value="<?= $row['id'] ?>"><?= $row['Genre'] ?></option>
-                    <?php
-                }
-                ?>
-            </select>
-        </label>
-        <label>
-            <select name="idAuthor">
-                <option value="0">Select author</option>
-                <?php
-                foreach ($params['authorResult'] as $row) {
-                    ?>
-                    <option value="<?= $row['id'] ?>"><?= $row['FullName'] ?></option>
-                    <?php
-                }
-                ?>
-            </select>
-        </label>
-        <input type="submit" value="Save">
-    </div>
-</form>
+                <label>
+                    <select name="idGenre">
+                        <option value="0">Select genre</option>
+                        <?php
+                        foreach ($params['genresResult'] as $row) {
+                            ?>
+                            <option value="<?= $row['id'] ?>"><?= $row['Genre'] ?></option>
+                            <?php
+                        }
+                        ?>
+                    </select>
+                </label>
+                <label>
+                    <select name="idAuthor">
+                        <option value="0">Select author</option>
+                        <?php
+                        foreach ($params['authorResult'] as $row) {
+                            ?>
+                            <option value="<?= $row['id'] ?>"><?= $row['FullName'] ?></option>
+                            <?php
+                        }
+                        ?>
+                    </select>
+                </label>
+                <input type="submit" value="Save">
+            </div>
+        </form>
+ <?php
+    }
+?>
 
 
 <form action="/edit" class="test" method="post">
@@ -103,10 +117,13 @@
                 <td><?= $rowBook['YearOfWriting'] ?></td>
                 <td><?= $rowBook['FullName'] ?></td>
                 <td><?= $rowBook['Genre'] ?></td>
+                <?php if(array_key_exists("user", $_SESSION) && $_SESSION['user']['IdRole'] == 1) { ?>
                 <td><button value="<?= $rowBook['id']  ?>" type="submit" name="id">Edit</button></td>
                 <td><button value="<?= $rowBook['id']  ?>" type="submit" name="id" formaction="/delete">Delete</button></td>
+                <td><button value="<?= $rowBook['id']  ?>" type="submit" name="id" formaction="/comment">Comment</button></td>
             </tr>
-        <?php } ?>
+        <?php }
+        } ?>
     </table>
 </div>
 </form>

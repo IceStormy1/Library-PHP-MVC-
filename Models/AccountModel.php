@@ -9,10 +9,18 @@ class AccountModel extends Model
 {
     public function CreateUser(string $username, string $password, string $confirmPassword, string $email)
     {
+        if(empty($username) or empty($password) or empty($email))
+        {
+            $_SESSION['EmptyFields'] = "The fields are empty. Please, check the entered data";
+            header("Location: http://librarynew/registration");
+            return;
+        }
+
         if (!($password === $confirmPassword || strlen($password) < 6))
         {
-            $_SESSION['message'] = 'Check your password';
+            $_SESSION['PasswordDontMatch'] = 'Check your password';
             header("Location: http://librarynew/registration");
+            return;
         }
 
         $idUser = $this->CreateGuid();
@@ -38,13 +46,25 @@ class AccountModel extends Model
 
         if ($query->num_rows == 1)
         {
+            $user = $query->fetch_assoc();
+            //добавить флажок Запомнить меня
+            $_SESSION['user'] = [
+                "IdUser" => $user['IdUser'],
+                "UserName"=>$user['UserName'],
+                "Email"=>$user['Email'],
+                "IdRole"=>$user['IdRole']
+            ];
+            
+            //$userSerialize = serialize($_SESSION['user']); //
+            //setcookie('user', $userSerialize, time() + 3600); // проверить это все
+
             header("Location: http://librarynew/");
         }
         else
         {
-            $_SESSION['AuthorizeError'] = 'Invailid username or password. Try again';
-
+            $_SESSION['AuthorizeError'] = 'Invalid username or password. Try again';
             header("Location: http://librarynew/login");
+            return false;
         }
 
         return true;

@@ -27,12 +27,22 @@
         </div>
     </div>
     <div class="header_section">
-        <div class="header_item headerButton">
-            <a href="#"> Settings </a>
-        </div>
-        <div class="header_item headerButton">
-            <a href="/login"> Sign in </a>
-        </div>
+        <?php
+        if(array_key_exists("user", $_SESSION)){ ?>
+            <div class="header_item headerButton">
+                <a href="#"><?=$_SESSION['user']['UserName'] ?> </a>
+            </div>
+            <div class="header_item headerButton">
+                <a href="/logout"> Logout </a>
+            </div>
+            <?php
+        }else{ ?>
+            <div class="header_item headerButton">
+                <a href="/login"> Sign in </a>
+            </div>
+            <?php
+        }
+        ?>
     </div>
 </div>
 <!-- End Header -->

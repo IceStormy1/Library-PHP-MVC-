@@ -77,5 +77,13 @@ return [
     'login'=>[
         'controller'=>'Account',
         'action'=>'login'
+    ],
+    'logout'=>[
+        'controller'=>'Account',
+        'action'=>'logout'
+    ],
+    'comment'=>[
+        'controller'=>'Main',
+        'action'=>'comment'
     ]
 ];

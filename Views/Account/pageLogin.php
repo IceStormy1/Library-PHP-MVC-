@@ -8,6 +8,11 @@
 </head>
 <body>
 <!-- Header -->
+<?php
+if(array_key_exists("user", $_SESSION)){
+    header("Location: http://librarynew/");
+}
+?>
 <div class="header">
     <div class="header_section">
         <div class="header_item headerlogo">
@@ -31,7 +36,7 @@
             <a href="#"> Settings </a>
         </div>
         <div class="header_item headerButton">
-            <a href="#"> Sign in </a>
+            <a href="/login"> Sign in </a>
         </div>
     </div>
 </div>
@@ -55,6 +60,9 @@ if(array_key_exists("SuccessRegistration", $_SESSION))
     </label>
     <input class="accountInput" type="password" name="Password">
     <button class = "AccountButton" type="submit">Log in</button>
+    <label>
+        <input class="accountCheckBox" type="checkbox" name="IsRemember"  /> Remember me
+    </label>
     <p>
         No account? <a href="/registration" id="acc">Register here</a>
     </p>

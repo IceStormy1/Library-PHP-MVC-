@@ -27,16 +27,27 @@
         </div>
     </div>
     <div class="header_section">
-        <div class="header_item headerButton">
-            <a href="#"> Settings </a>
-        </div>
-        <div class="header_item headerButton">
-            <a href="/login"> Sign in </a>
-        </div>
+        <?php
+        if(array_key_exists("user", $_SESSION)){ ?>
+            <div class="header_item headerButton">
+                <a href="#"><?=$_SESSION['user']['UserName'] ?> </a>
+            </div>
+            <div class="header_item headerButton">
+                <a href="/logout"> Logout </a>
+            </div>
+            <?php
+        }else{ ?>
+            <div class="header_item headerButton">
+                <a href="/login"> Sign in </a>
+            </div>
+            <?php
+        }
+        ?>
     </div>
 </div>
 <!-- End Header -->
-
+<?php
+if(array_key_exists("user", $_SESSION) && $_SESSION['user']['IdRole'] == 1){  ?>
 <form action="/authors/save" method="POST" enctype="multipart/form-data" id="test">
     <div class="second_header_section">
         <label>
@@ -57,7 +68,9 @@
         <input type="submit" value="Save">
     </div>
 </form>
-
+<?php
+    }
+?>
 <form action="/authors/edit" class="test" method="post">
     <div class="tableMain">
         <table border="1" width="90%">
@@ -84,10 +97,13 @@
                     <td><?= $rowAuthors['DateOfDeath'] ?></td>
                     <td><?= $rowAuthors['PlaceOfBirth'] ?></td>
                     <td><?= $rowAuthors['AuthorBiography'] ?></td>
+                    <?php if(array_key_exists("user", $_SESSION) && $_SESSION['user']['IdRole'] == 1) { ?>
                     <td><button value="<?= $rowAuthors['id']  ?>" type="submit" name="id">Edit</button></td>
                     <td><button value="<?= $rowAuthors['id']  ?>" type="submit" name="id" formaction="/authors/delete">Delete</button></td>
                 </tr>
-            <?php } ?>
+            <?php
+                }
+            } ?>
         </table>
     </div>
 </form>
