@@ -92,7 +92,11 @@
 ?>
 
 
+
 <form action="/edit" class="test" method="post">
+    <button value="1" type="submit" name="idTest" formaction="/bookTest">3 question</button>
+    <button value="2" type="submit" name="idTest" formaction="/bookTest">5 question</button>
+
     <div class="tableMain">
     <table border="1" width="70%">
         <col style="width:0%">

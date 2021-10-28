@@ -31,7 +31,7 @@ class AccountModel extends Model
             header("Location: http://librarynew/registration");
             return;
         }
-        // Запомнить меня
+
         $uppercase = preg_match('@[A-Z]@', $password);
         $lowercase = preg_match('@[a-z]@', $password);
         $number    = preg_match('@[0-9]@', $password);
@@ -69,15 +69,17 @@ class AccountModel extends Model
                 "IdRole"=>$user['IdRole']
             ];
 
-            if($isRemember)
-            {
-                $userSerialize = serialize($_SESSION['user']);
-                setcookie('user', $userSerialize, time() + 3600);
-            }
-            else
-            {
-                setcookie('user', "", time()-1);
-            }
+//            if($isRemember)
+//            {
+//                $userSerialize = serialize($_SESSION['user']);
+//                var_dump($userSerialize);
+//                exit();
+//                setcookie('user', $userSerialize, time() + 3600);
+//            }
+//            else
+//            {
+//                setcookie('user', "", time()-1);
+//            }
 
             header("Location: http://librarynew/");
         }

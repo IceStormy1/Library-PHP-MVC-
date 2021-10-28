@@ -93,5 +93,13 @@ return [
     'logout'=>[
         'controller'=>'Account',
         'action'=>'logout'
+    ],
+    'bookTest'=>[
+        'controller'=>'Main',
+        'action'=>'bookTest'
+    ],
+    'saveTest'=>[
+        'controller'=>'Main',
+        'action'=>'saveTest'
     ]
 ];
