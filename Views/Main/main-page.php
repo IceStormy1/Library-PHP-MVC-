@@ -78,7 +78,7 @@
                         <?php
                         foreach ($params['authorResult'] as $row) {
                             ?>
-                            <option value="<?= $row['id'] ?>"><?= $row['FullName'] ?></option>
+                            <option value="<?= $row['id'] ?>"><?= $row['Full_Name'] ?></option>
                             <?php
                         }
                         ?>

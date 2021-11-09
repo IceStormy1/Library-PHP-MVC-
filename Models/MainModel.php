@@ -13,17 +13,17 @@ class MainModel extends Model
 
     public function getAllAuthors()
     {
-        return $this->dbContext->query('SELECT `id`, `FullName` FROM `authors`');
+        return $this->dbContext->query('SELECT `id`, `Full_Name` FROM `authors`');
     }
 
     public function getAllBooks()
     {
-        return $this->dbContext->query('SELECT `books`.`id`, `books`.`Description`, `books`.`YearOfWriting`, `books`.`BookTitle`, `authors`.`FullName`, `bookgenres`.`Genre`, `books`.`idAuthor`, `books`.`idGenre` FROM `authors` INNER JOIN `books` ON `authors`.`id` = `books`.`idAuthor` INNER JOIN `bookgenres` ON `bookgenres`.`id` = `books`.`idGenre`');
+        return $this->dbContext->query('SELECT `books`.`id`, `books`.`Description`, `books`.`Year_Of_Writing`, `books`.`Book_Title`, `authors`.`Full_Name`, `bookgenres`.`Genre`, `books`.`idAuthor`, `books`.`idGenre` FROM `authors` INNER JOIN `books` ON `authors`.`id` = `books`.`idAuthor` INNER JOIN `bookgenres` ON `bookgenres`.`id` = `books`.`idGenre`');
     }
 
     public function SaveEntry(string $Title, string $Description, string $Date, int $idAuthor, int $idGenre)
     {
-        $query = "INSERT INTO `books` (BookTitle, Description, idAuthor, idGenre, YearOfWriting) values ('$Title', '$Description', '$idAuthor','$idGenre', '$Date')";
+        $query = "INSERT INTO `books` (BookTitle, Description, idAuthor, idGenre, Year_Of_Writing) values ('$Title', '$Description', '$idAuthor','$idGenre', '$Date')";
         mysqli_query($this->dbContext, $query) or die("Error in query to database");
     }
 

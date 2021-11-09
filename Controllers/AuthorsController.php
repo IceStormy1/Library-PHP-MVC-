@@ -1,7 +1,9 @@
 <?php
 
 namespace Controllers;
+
 use Controllers\AbstractController;
+
 class AuthorsController extends AbstractController
 {
     public function authorsMain(): void
@@ -24,19 +26,20 @@ class AuthorsController extends AbstractController
             $dateOfDeath = $_POST['DateOfDeath'];
             $placeOfBirth = $_POST['PlaceOfBirth'];
 
-            $this->model->SaveAuthor($fullname,$authorBiography,$dateOfBirth,$dateOfDeath,$placeOfBirth);
+            //$this->model->SaveAuthor($fullname,$authorBiography,$dateOfBirth,$dateOfDeath,$placeOfBirth);
+
 
             header("Location: http://librarynew/authors/");
         }
     }
 
-    public function authorsEdit():void
+    public function authorsEdit(): void
     {
         if (isset($_POST)) {
             $authorsResult = $this->model->getAllAuthors();
             $idAuthor = $_POST['id'];
             $params = [
-                'idEdit'=>$idAuthor,
+                'idEdit' => $idAuthor,
                 'authorsResult' => $authorsResult,
             ];
 
@@ -46,8 +49,7 @@ class AuthorsController extends AbstractController
 
     public function authorsSaveEdit(): void
     {
-        if(isset($_POST))
-        {
+        if (isset($_POST)) {
             $idAuthor = $_POST['id'];
             $fullname = $_POST['FullName'];
             $authorBiography = $_POST['AuthorBiography'];
@@ -55,13 +57,13 @@ class AuthorsController extends AbstractController
             $dateOfDeath = $_POST['DateOfDeath'];
             $placeOfBirth = $_POST['PlaceOfBirth'];
 
-            $this->model->SaveEdit($idAuthor, $fullname, $authorBiography, $dateOfBirth, $dateOfDeath,$placeOfBirth);
+            $this->model->SaveEdit($idAuthor, $fullname, $authorBiography, $dateOfBirth, $dateOfDeath, $placeOfBirth);
 
             header("Location: http://librarynew/authors");
         }
     }
 
-    public  function authorsDelete():void
+    public function authorsDelete(): void
     {
         if (isset($_POST)) {
             $idAuthor = $_POST['id'];
