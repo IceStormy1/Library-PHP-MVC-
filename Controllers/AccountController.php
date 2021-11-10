@@ -19,8 +19,6 @@ class AccountController extends AbstractController
         }
 
         $this->render('pageLogin');
-
-
     }
 
     public function registration(): void
