@@ -3,14 +3,17 @@
 namespace Models;
 
 use Config\connect;
+use Sessions_Ex_3\Session;
 
 abstract class Model
 {
     protected $dbContext;
+    protected $sessions;
 
     public function __construct()
     {
         $this->dbContext = connect::Connect();
+        $this->sessions =  new Session;
     }
 
     protected function CreateGuid()

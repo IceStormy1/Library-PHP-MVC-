@@ -11,8 +11,17 @@ class AccountModel extends Model
     {
         if(empty($username) or empty($password) or empty($email))
         {
-            $_SESSION['EmptyFields'] = "The fields are empty. Please, check the entered data";
+            $this->sessions->CreateSessionByKey("EmptyFields", "The fields are empty. Please, check the entered data");
             header("Location: http://librarynew/registration");
+
+            return;
+        }
+
+        if (!($password === $confirmPassword))
+        {
+            $this->sessions->CreateSessionByKey("PasswordDontMatch", "Passwords mismatch"); ;
+            header("Location: http://librarynew/registration");
+
             return;
         }
 
@@ -20,15 +29,9 @@ class AccountModel extends Model
 
         if($query->num_rows >= 1)
         {
-            $_SESSION['ExceptionCreateUser'] = 'Such a user already exists';
+            $this->sessions->CreateSessionByKey("ExceptionCreateUser", "Such a user already exists");
             header("Location: http://librarynew/registration");
-            return;
-        }
 
-        if (!($password === $confirmPassword))
-        {
-            $_SESSION['PasswordDontMatch'] = 'Passwords mismatch';
-            header("Location: http://librarynew/registration");
             return;
         }
 
@@ -37,8 +40,9 @@ class AccountModel extends Model
         $number    = preg_match('@[0-9]@', $password);
 
         if(!$uppercase || !$lowercase || !$number || strlen($password) < 6) {
-            $_SESSION['PasswordDontMatch'] = 'Password must contain at least 1 digit, 1 capital latin letter';
+            $this->sessions->CreateSessionByKey("PasswordDontMatch", "Password must contain at least 1 digit, 1 capital latin letter");
             header("Location: http://librarynew/registration");
+
             return;
         }
 
@@ -49,7 +53,7 @@ class AccountModel extends Model
 
         if ($result)
         {
-            $_SESSION['SuccessRegistration'] = 'Congratulations! You have successfully registered. Now you can log in to your account';
+            $this->sessions->CreateSessionByKey("SuccessRegistration", "Congratulations! You have successfully registered. Now you can log in to your account");
             header("Location: http://librarynew/login");
         }
     }
@@ -68,18 +72,6 @@ class AccountModel extends Model
                 "Email"=>$user['Email'],
                 "IdRole"=>$user['IdRole']
             ];
-
-//            if($isRemember)
-//            {
-//                $userSerialize = serialize($_SESSION['user']);
-//                var_dump($userSerialize);
-//                exit();
-//                setcookie('user', $userSerialize, time() + 3600);
-//            }
-//            else
-//            {
-//                setcookie('user', "", time()-1);
-//            }
 
             header("Location: http://librarynew/");
         }

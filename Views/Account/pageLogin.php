@@ -9,7 +9,7 @@
 <body>
 <!-- Header -->
 <?php
-if(array_key_exists("user", $_SESSION)){
+if(\Sessions_Ex_3\Session::CheckSessionValueByKey('user')){
     header("Location: http://librarynew/");
 }
 ?>
@@ -43,10 +43,10 @@ if(array_key_exists("user", $_SESSION)){
 <!-- End Header -->
 
 <?php
-if(array_key_exists("SuccessRegistration", $_SESSION))
+if(\Sessions_Ex_3\Session::CheckSessionValueByKey('SuccessRegistration'))
 {
-    echo '<p class="success">' . $_SESSION['SuccessRegistration'] . '</p>';
-    unset($_SESSION['SuccessRegistration']);
+    echo '<p class="success">' . \Sessions_Ex_3\Session::GetSessionValueByKey('SuccessRegistration') . '</p>';
+    \Sessions_Ex_3\Session::DeleteSessionByKey('SuccessRegistration');
 }
 ?>
 
@@ -67,10 +67,10 @@ if(array_key_exists("SuccessRegistration", $_SESSION))
         No account? <a href="/registration" id="acc">Register here</a>
     </p>
     <?php
-    if(array_key_exists("AuthorizeError", $_SESSION))
+    if(\Sessions_Ex_3\Session::CheckSessionValueByKey('AuthorizeError'))
     {
-        echo '<p class="message">' . $_SESSION['AuthorizeError'] . '</p>';
-        unset($_SESSION['AuthorizeError']);
+        echo '<p class="message">' . \Sessions_Ex_3\Session::GetSessionValueByKey('AuthorizeError') . '</p>';
+        \Sessions_Ex_3\Session::DeleteSessionByKey('AuthorizeError');
     }
     ?>
 </form>

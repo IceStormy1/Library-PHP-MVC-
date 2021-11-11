@@ -9,7 +9,7 @@
 <body>
 <!-- Header -->
 <?php
-if(array_key_exists("user", $_SESSION)){
+if(\Sessions_Ex_3\Session::CheckSessionValueByKey('user')){
     header("Location: http://librarynew/");
 }
 ?>
@@ -64,20 +64,20 @@ if(array_key_exists("user", $_SESSION)){
         Already have an account? <a href="/login" id="acc">Sign in</a>
     </p>
     <?php
-    if(array_key_exists("PasswordDontMatch", $_SESSION))
+    if(\Sessions_Ex_3\Session::CheckSessionValueByKey('PasswordDontMatch'))
     {
-        echo '<p class="message">' . $_SESSION['PasswordDontMatch'] . '</p>';
-        unset($_SESSION['PasswordDontMatch']);
+        echo '<p class="message">' . \Sessions_Ex_3\Session::GetSessionValueByKey('PasswordDontMatch') . '</p>';
+        \Sessions_Ex_3\Session::DeleteSessionByKey('PasswordDontMatch');
     }
-    elseif (array_key_exists("ExceptionCreateUser", $_SESSION))
+    elseif (\Sessions_Ex_3\Session::CheckSessionValueByKey('ExceptionCreateUser'))
     {
-        echo '<p class="message">' . $_SESSION['ExceptionCreateUser'] . '</p>';
-        unset($_SESSION['ExceptionCreateUser']);
+        echo '<p class="message">' . \Sessions_Ex_3\Session::GetSessionValueByKey('ExceptionCreateUser') . '</p>';
+        \Sessions_Ex_3\Session::DeleteSessionByKey('ExceptionCreateUser');
     }
-    elseif(array_key_exists("EmptyFields", $_SESSION))
+    elseif(\Sessions_Ex_3\Session::CheckSessionValueByKey('ExceptionCreateUser'))
     {
-        echo '<p class="message">' . $_SESSION['EmptyFields'] . '</p>';
-        unset($_SESSION['EmptyFields']);
+        echo '<p class="message">' . \Sessions_Ex_3\Session::GetSessionValueByKey('EmptyFields') . '</p>';
+        \Sessions_Ex_3\Session::DeleteSessionByKey('EmptyFields');
     }
     ?>
 </form>
