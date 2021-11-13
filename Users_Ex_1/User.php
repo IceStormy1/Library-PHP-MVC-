@@ -7,9 +7,9 @@ use \Users_Ex_1\AUser;
 
 class User extends AUser
 {
-    protected string $login;
-    protected string $password;
-    protected string $email;
+    private string $login;
+    private string $password;
+    private string $email;
 
     public function __construct(string $login = "", string $password = "", string $email = "")
     {
