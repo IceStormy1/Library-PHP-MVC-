@@ -92,6 +92,7 @@ if(!array_key_exists("user", $_SESSION) && $_SESSION['user']['IdRole'] != 2){
             <th>PlaceOfBirth</th>
             <th>AuthorBiography</th>
             <?php
+            if (isset($params)){
             foreach ($params['authorsResult'] as $rowAuthor) {
                 ?>
                 <tr>
@@ -104,27 +105,27 @@ if(!array_key_exists("user", $_SESSION) && $_SESSION['user']['IdRole'] != 2){
                         </td>
                         <td>
                             <label>
-                                <input type="text" value="<?= $rowAuthor['FullName'] ?>" name="FullName">
+                                <input type="text" value="<?= $rowAuthor['full_name'] ?>" name="FullName">
                             </label>
                         </td>
                         <td>
                             <label>
-                                <input type="text" value="<?= $rowAuthor['DateOfBirth'] ?>" name="DateOfBirth">
+                                <input type="text" value="<?= $rowAuthor['date_of_birth'] ?>" name="DateOfBirth">
                             </label>
                         </td>
                         <td>
                             <label>
-                                <input type="text" value="<?= $rowAuthor['DateOfDeath'] ?>" name="DateOfDeath">
+                                <input type="text" value="<?= $rowAuthor['date_of_death'] ?>" name="DateOfDeath">
                             </label>
                         </td>
                         <td>
                             <label>
-                                <input type="text" value="<?= $rowAuthor['PlaceOfBirth'] ?>" name="PlaceOfBirth">
+                                <input type="text" value="<?= $rowAuthor['place_of_birth'] ?>" name="PlaceOfBirth">
                             </label>
                         </td>
                         <td>
                             <label>
-                                <input type="text" value="<?= $rowAuthor['AuthorBiography'] ?>" name="AuthorBiography">
+                                <input type="text" value="<?= $rowAuthor['author_biography'] ?>" name="AuthorBiography">
                             </label>
                         </td>
 
@@ -138,14 +139,15 @@ if(!array_key_exists("user", $_SESSION) && $_SESSION['user']['IdRole'] != 2){
 
                     <?php } else { ?>
                         <td><?= $rowAuthor['id'] ?></td>
-                        <td><?= $rowAuthor['FullName'] ?></td>
-                        <td><?= $rowAuthor['DateOfBirth'] ?></td>
-                        <td><?= $rowAuthor['DateOfDeath'] ?></td>
-                        <td><?= $rowAuthor['PlaceOfBirth'] ?></td>
-                        <td><?= $rowAuthor['AuthorBiography'] ?></td>
+                        <td><?= $rowAuthor['full_name'] ?></td>
+                        <td><?= $rowAuthor['date_of_birth'] ?></td>
+                        <td><?= $rowAuthor['date_of_death'] ?></td>
+                        <td><?= $rowAuthor['place_of_birth'] ?></td>
+                        <td><?= $rowAuthor['author_biography'] ?></td>
                     <?php } ?>
                 </tr>
-            <?php } ?>
+            <?php }
+            }?>
         </table>
 </div>
 </form>

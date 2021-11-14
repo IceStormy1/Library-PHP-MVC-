@@ -3,6 +3,7 @@
 namespace Models;
 
 use Config\connect;
+use R;
 
 abstract class Model
 {
@@ -11,6 +12,12 @@ abstract class Model
     public function __construct()
     {
         $this->dbContext = connect::Connect();
+        R::setup("mysql:host=127.0.0.1;dbname=digitaldatabase", "mysql", "");
+
+        if(!R::testConnection())
+        {
+            exit('No connection');
+        }
     }
 
     protected function CreateGuid()

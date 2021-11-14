@@ -92,11 +92,11 @@ if(array_key_exists("user", $_SESSION) && $_SESSION['user']['IdRole'] == 1){  ?>
                 ?>
                 <tr>
                     <td><?= $rowAuthors['id'] ?></td>
-                    <td><?= $rowAuthors['FullName'] ?></td>
-                    <td><?= $rowAuthors['DateOfBirth'] ?></td>
-                    <td><?= $rowAuthors['DateOfDeath'] ?></td>
-                    <td><?= $rowAuthors['PlaceOfBirth'] ?></td>
-                    <td><?= $rowAuthors['AuthorBiography'] ?></td>
+                    <td><?= $rowAuthors['full_name'] ?></td>
+                    <td><?= $rowAuthors['date_of_birth'] ?></td>
+                    <td><?= $rowAuthors['date_of_death'] ?></td>
+                    <td><?= $rowAuthors['place_of_birth'] ?></td>
+                    <td><?= $rowAuthors['author_biography'] ?></td>
                     <?php if(array_key_exists("user", $_SESSION) && $_SESSION['user']['IdRole'] == 1) { ?>
                     <td><button value="<?= $rowAuthors['id']  ?>" type="submit" name="id">Edit</button></td>
                     <td><button value="<?= $rowAuthors['id']  ?>" type="submit" name="id" formaction="/authors/delete">Delete</button></td>

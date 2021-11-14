@@ -3,6 +3,7 @@
 namespace Models;
 
 use Models\Model;
+use R;
 
 class MainModel extends Model
 {
@@ -13,17 +14,17 @@ class MainModel extends Model
 
     public function getAllAuthors()
     {
-        return $this->dbContext->query('SELECT `id`, `Full_Name` FROM `authors`');
+        return $this->dbContext->query('SELECT `id`, `full_name` FROM `authors`');
     }
 
     public function getAllBooks()
     {
-        return $this->dbContext->query('SELECT `books`.`id`, `books`.`Description`, `books`.`Year_Of_Writing`, `books`.`Book_Title`, `authors`.`Full_Name`, `bookgenres`.`Genre`, `books`.`idAuthor`, `books`.`idGenre` FROM `authors` INNER JOIN `books` ON `authors`.`id` = `books`.`idAuthor` INNER JOIN `bookgenres` ON `bookgenres`.`id` = `books`.`idGenre`');
+        return $this->dbContext->query('SELECT `books`.`id`, `books`.`Description`, `books`.`YearOfWriting`, `books`.`BookTitle`, `authors`.`full_name`, `bookgenres`.`Genre`, `books`.`idAuthor`, `books`.`idGenre` FROM `authors` INNER JOIN `books` ON `authors`.`id` = `books`.`idAuthor` INNER JOIN `bookgenres` ON `bookgenres`.`id` = `books`.`idGenre`');
     }
 
     public function SaveEntry(string $Title, string $Description, string $Date, int $idAuthor, int $idGenre)
     {
-        $query = "INSERT INTO `books` (BookTitle, Description, idAuthor, idGenre, Year_Of_Writing) values ('$Title', '$Description', '$idAuthor','$idGenre', '$Date')";
+        $query = "INSERT INTO `books` (BookTitle, Description, idAuthor, idGenre, YearOfWriting) values ('$Title', '$Description', '$idAuthor','$idGenre', '$Date')";
         mysqli_query($this->dbContext, $query) or die("Error in query to database");
     }
 
@@ -61,5 +62,20 @@ class MainModel extends Model
     {
         $query = "DELETE FROM `usercomments` WHERE `idComment` = '$idComment' ";
         mysqli_query($this->dbContext, $query) or die("Error in query to database");
+    }
+
+    public function GetCountBooks()
+    {
+        return R::getAll("SELECT `bookgenres`.`Genre`, COUNT(`books`.`id`) AS 'CountBooks' FROM `bookgenres` INNER JOIN `books` ON `bookgenres`.`id` = `books`.`idGenre` GROUP BY `bookgenres`.`Genre`");
+    }
+
+    public function FindBooksByKey(string $key)
+    {
+        return R::getRow("SELECT `books`.`id`, `books`.`Description`, `books`.`YearOfWriting`, `books`.`BookTitle`, `authors`.`full_name`, `bookgenres`.`Genre`, `books`.`idAuthor`, `books`.`idGenre` FROM `authors` INNER JOIN `books` ON `authors`.`id` = `books`.`idAuthor` INNER JOIN `bookgenres` ON `bookgenres`.`id` = `books`.`idGenre` WHERE BookTitle LIKE '%$key%' LIMIT 1 ");
+    }
+
+    public function GetLatestBooks()
+    {
+        return R::getAll("SELECT `books`.`BookTitle`, `books`.`YearOfWriting` FROM books WHERE `books`.`YearOfWriting` BETWEEN '1820-01-01' AND '1842-01-01'");
     }
 }

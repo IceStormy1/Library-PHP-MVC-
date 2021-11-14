@@ -101,5 +101,9 @@ return [
     'saveTest'=>[
         'controller'=>'Main',
         'action'=>'saveTest'
+    ],
+    'findBook'=>[
+        'controller'=>'Main',
+        'action'=>'findBook'
     ]
 ];

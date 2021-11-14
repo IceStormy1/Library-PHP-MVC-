@@ -3,7 +3,6 @@
 namespace Controllers;
 
 use Controllers\AbstractController;
-
 class AuthorsController extends AbstractController
 {
     public function authorsMain(): void
@@ -26,7 +25,7 @@ class AuthorsController extends AbstractController
             $dateOfDeath = $_POST['DateOfDeath'];
             $placeOfBirth = $_POST['PlaceOfBirth'];
 
-            //$this->model->SaveAuthor($fullname,$authorBiography,$dateOfBirth,$dateOfDeath,$placeOfBirth);
+            $this->model->SaveAuthor($fullname,$authorBiography,$dateOfBirth,$dateOfDeath,$placeOfBirth);
 
 
             header("Location: http://librarynew/authors/");

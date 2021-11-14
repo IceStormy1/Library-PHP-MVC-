@@ -11,11 +11,15 @@ class MainController extends AbstractController
         $genresResult = $this->model->getAllGenres();
         $authorResult = $this->model->getAllAuthors();
         $booksResult = $this->model->getAllBooks();
+        $countBooks = $this->model->GetCountBooks();
+        $LatestBooks = $this->model->GetLatestBooks();
 
         $params = [
             'genresResult' => $genresResult,
             'authorResult' => $authorResult,
-            'booksResult' => $booksResult
+            'booksResult' => $booksResult,
+            'countBooks' => $countBooks,
+            'latestBooks' => $LatestBooks
         ];
 
         $this->render('main-page', $params);
@@ -236,5 +240,15 @@ class MainController extends AbstractController
                 ]);
             }
         }
+    }
+
+    public function findBook()
+    {
+        $key = $_POST['findBooksKey'];
+        $result = $this->model->FindBooksByKey($key);
+        $_SESSION['FindBooks'] = $result;
+
+        header("Location: http://librarynew/");
+
     }
 }

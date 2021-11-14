@@ -1,5 +1,7 @@
 <?php
+
 namespace Config;
+require "RedBean/rb-mysql.php";
 
 class  connect
 {
@@ -12,8 +14,7 @@ class  connect
 
         $connection = mysqli_connect($serverName, $username, $password, $database);
 
-        if (!$connection)
-        {
+        if (!$connection) {
             die("Connection failed." . mysqli_connect_error());
         }
 

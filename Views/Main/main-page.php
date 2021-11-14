@@ -78,7 +78,7 @@
                         <?php
                         foreach ($params['authorResult'] as $row) {
                             ?>
-                            <option value="<?= $row['id'] ?>"><?= $row['Full_Name'] ?></option>
+                            <option value="<?= $row['id'] ?>"><?= $row['full_name'] ?></option>
                             <?php
                         }
                         ?>
@@ -90,8 +90,6 @@
  <?php
     }
 ?>
-
-
 
 <form action="/edit" class="test" method="post">
     <button value="1" type="submit" name="idTest" formaction="/bookTest">3 question</button>
@@ -112,14 +110,13 @@
         <th>Author</th>
         <th>Genre</th>
         <?php
-        foreach ($params['booksResult'] as $rowBook) {
-            ?>
+        foreach ($params['booksResult'] as $rowBook) { ?>
             <tr>
                 <td><?= $rowBook['id'] ?></td>
                 <td><?= $rowBook['BookTitle'] ?></td>
                 <td><?= $rowBook['Description'] ?></td>
                 <td><?= $rowBook['YearOfWriting'] ?></td>
-                <td><?= $rowBook['FullName'] ?></td>
+                <td><?= $rowBook['full_name'] ?></td>
                 <td><?= $rowBook['Genre'] ?></td>
                 <td><button value="<?= $rowBook['id']  ?>" type="submit" name="id" formaction="/comments">Comment</button></td>
                 <?php if(array_key_exists("user", $_SESSION) && $_SESSION['user']['IdRole'] == 1) { ?>
@@ -131,6 +128,75 @@
     </table>
 </div>
 </form>
+    <table border="1" width="20%">
+        <col style="width:70%">
+        <col style="width:30%">
+
+        <th>Genre</th>
+        <th>Count Books</th>
+
+        <?php
+            foreach ($params['countBooks'] as $rowCount){ ?>
+                <tr>
+                    <td><?= $rowCount['Genre'] ?></td>
+                    <td><?= $rowCount['CountBooks'] ?></td>
+                </tr>
+            <?php } ?>
+    </table>
+
+<form action="/findBook" method="post">
+    <br><br><br>
+    <label>
+        <input maxlength="100" name="findBooksKey" placeholder="Search book by book title"/>
+    </label>
+    <input type="submit" value="Search">
+    <?php
+        if(array_key_exists("FindBooks", $_SESSION)) { ?>
+    <br><br>
+    <div class="tableMain">
+        <table border="1" width="70%">
+            <col style="width:0%">
+            <col style="width:10%">
+            <col style="width:60%">
+            <col style="width:10%">
+            <col style="width:20%">
+
+            <th>ID Book</th>
+            <th>Title of the book</th>
+            <th>Description</th>
+            <th>Date of Write</th>
+            <th>Author</th>
+            <th>Genre</th>
+
+                <tr>
+                <td><?= $_SESSION['FindBooks']['id'] ?></td>
+                <td><?= $_SESSION['FindBooks']['BookTitle'] ?></td>
+                <td><?= $_SESSION['FindBooks']['Description'] ?></td>
+                <td><?= $_SESSION['FindBooks']['YearOfWriting'] ?></td>
+                <td><?= $_SESSION['FindBooks']['full_name'] ?></td>
+                <td><?= $_SESSION['FindBooks']['Genre'] ?></td>
+        <?php
+        unset($_SESSION['FindBooks']);
+        }
+        ?>
+</form>
+<br>
+<p>1820-01-01 - 1842-01-01</p>
+<table border="1" width="20%">
+    <col style="width:70%">
+    <col style="width:30%">
+
+    <th>Genre</th>
+    <th>Count Books</th>
+
+    <?php
+    foreach ($params['latestBooks'] as $rowCount){ ?>
+        <tr>
+            <td><?= $rowCount['BookTitle'] ?></td>
+            <td><?= $rowCount['YearOfWriting'] ?></td>
+        </tr>
+    <?php } ?>
+</table>
 
 <footer>
     <div class="footer">
