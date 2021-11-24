@@ -67,7 +67,7 @@ class MainModel extends Model
     public function GetCountBooks()
     {
         $booksIds = R::find('bookgenres');
-
+        $test = 0;
         foreach ($booksIds as $key)
         {
             $result[$key['genre']] = R::load('bookgenres', $key)->countOwn("books");
