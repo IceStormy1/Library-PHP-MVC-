@@ -1,5 +1,4 @@
 <html lang="en">
-
 <head>
     <meta charset="UTF-8"/>
     <title>Главная страница</title>
@@ -113,9 +112,9 @@
         foreach ($params['booksResult'] as $rowBook) { ?>
             <tr>
                 <td><?= $rowBook['id'] ?></td>
-                <td><?= $rowBook['BookTitle'] ?></td>
-                <td><?= $rowBook['Description'] ?></td>
-                <td><?= $rowBook['YearOfWriting'] ?></td>
+                <td><?= $rowBook['book_title'] ?></td>
+                <td><?= $rowBook['description'] ?></td>
+                <td><?= $rowBook['year_of_writing'] ?></td>
                 <td><?= $rowBook['full_name'] ?></td>
                 <td><?= $rowBook['Genre'] ?></td>
                 <td><button value="<?= $rowBook['id']  ?>" type="submit" name="id" formaction="/comments">Comment</button></td>
@@ -136,10 +135,11 @@
         <th>Count Books</th>
 
         <?php
-            foreach ($params['countBooks'] as $rowCount){ ?>
+
+            foreach ($params['countBooks'] as $key => $value){ ?>
                 <tr>
-                    <td><?= $rowCount['Genre'] ?></td>
-                    <td><?= $rowCount['CountBooks'] ?></td>
+                    <td><?= $key ?></td>
+                    <td><?= $value ?></td>
                 </tr>
             <?php } ?>
     </table>
@@ -159,41 +159,36 @@
             <col style="width:10%">
             <col style="width:60%">
             <col style="width:10%">
-            <col style="width:20%">
+
 
             <th>ID Book</th>
             <th>Title of the book</th>
             <th>Description</th>
             <th>Date of Write</th>
-            <th>Author</th>
-            <th>Genre</th>
-
                 <tr>
                 <td><?= $_SESSION['FindBooks']['id'] ?></td>
-                <td><?= $_SESSION['FindBooks']['BookTitle'] ?></td>
-                <td><?= $_SESSION['FindBooks']['Description'] ?></td>
-                <td><?= $_SESSION['FindBooks']['YearOfWriting'] ?></td>
-                <td><?= $_SESSION['FindBooks']['full_name'] ?></td>
-                <td><?= $_SESSION['FindBooks']['Genre'] ?></td>
-        <?php
+                <td><?= $_SESSION['FindBooks']['book_title'] ?></td>
+                <td><?= $_SESSION['FindBooks']['description'] ?></td>
+                <td><?= $_SESSION['FindBooks']['year_of_writing'] ?></td>
+<?php
         unset($_SESSION['FindBooks']);
         }
-        ?>
+?>
 </form>
 <br>
-<p>1820-01-01 - 1842-01-01</p>
+<p>1820-01-01 - 1837-01-01</p>
 <table border="1" width="20%">
     <col style="width:70%">
     <col style="width:30%">
 
-    <th>Genre</th>
-    <th>Count Books</th>
+    <th>Book Title</th>
+    <th>Year of Writing</th>
 
     <?php
     foreach ($params['latestBooks'] as $rowCount){ ?>
         <tr>
-            <td><?= $rowCount['BookTitle'] ?></td>
-            <td><?= $rowCount['YearOfWriting'] ?></td>
+            <td><?= $rowCount['book_title'] ?></td>
+            <td><?= $rowCount['year_of_writing'] ?></td>
         </tr>
     <?php } ?>
 </table>

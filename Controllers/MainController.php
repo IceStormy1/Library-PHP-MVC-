@@ -246,7 +246,18 @@ class MainController extends AbstractController
     {
         $key = $_POST['findBooksKey'];
         $result = $this->model->FindBooksByKey($key);
-        $_SESSION['FindBooks'] = $result;
+
+        foreach ($result as $value)
+        {
+            $_SESSION['FindBooks'] = [
+                'id' => $value->id,
+                'description' => $value->description,
+                'book_title' => $value->book_title,
+                'year_of_writing' => $value->year_of_writing,
+                'id_author' => $value->id_author,
+                'id_genre' => $value->id_genre
+            ];
+        }
 
         header("Location: http://librarynew/");
 

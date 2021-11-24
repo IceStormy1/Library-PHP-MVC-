@@ -19,7 +19,7 @@ class MainModel extends Model
 
     public function getAllBooks()
     {
-        return $this->dbContext->query('SELECT `books`.`id`, `books`.`Description`, `books`.`YearOfWriting`, `books`.`BookTitle`, `authors`.`full_name`, `bookgenres`.`Genre`, `books`.`idAuthor`, `books`.`idGenre` FROM `authors` INNER JOIN `books` ON `authors`.`id` = `books`.`idAuthor` INNER JOIN `bookgenres` ON `bookgenres`.`id` = `books`.`idGenre`');
+        return $this->dbContext->query('SELECT `books`.`id`, `books`.`description`, `books`.`year_of_writing`, `books`.`book_title`, `authors`.`full_name`, `bookgenres`.`Genre`, `books`.`id_author`, `books`.`bookgenres_id` FROM `authors` INNER JOIN `books` ON `authors`.`id` = `books`.`id_author` INNER JOIN `bookgenres` ON `bookgenres`.`id` = `books`.`bookgenres_id`');
     }
 
     public function SaveEntry(string $Title, string $Description, string $Date, int $idAuthor, int $idGenre)
@@ -66,16 +66,23 @@ class MainModel extends Model
 
     public function GetCountBooks()
     {
-        return R::getAll("SELECT `bookgenres`.`Genre`, COUNT(`books`.`id`) AS 'CountBooks' FROM `bookgenres` INNER JOIN `books` ON `bookgenres`.`id` = `books`.`idGenre` GROUP BY `bookgenres`.`Genre`");
+        $booksIds = R::find('bookgenres');
+
+        foreach ($booksIds as $key)
+        {
+            $result[$key['genre']] = R::load('bookgenres', $key)->countOwn("books");
+        }
+
+        return $result;
     }
 
     public function FindBooksByKey(string $key)
     {
-        return R::getRow("SELECT `books`.`id`, `books`.`Description`, `books`.`YearOfWriting`, `books`.`BookTitle`, `authors`.`full_name`, `bookgenres`.`Genre`, `books`.`idAuthor`, `books`.`idGenre` FROM `authors` INNER JOIN `books` ON `authors`.`id` = `books`.`idAuthor` INNER JOIN `bookgenres` ON `bookgenres`.`id` = `books`.`idGenre` WHERE BookTitle LIKE '%$key%' LIMIT 1 ");
+        return R::find('books', "book_title LIKE ? ", array("%$key%"));
     }
 
     public function GetLatestBooks()
     {
-        return R::getAll("SELECT `books`.`BookTitle`, `books`.`YearOfWriting` FROM books WHERE `books`.`YearOfWriting` BETWEEN '1820-01-01' AND '1842-01-01'");
+        return R::find('books', "year_of_writing BETWEEN '1820-01-01' AND '1837-01-01'");
     }
 }
